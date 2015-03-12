@@ -2,7 +2,6 @@
 #define schedulerH
 
 #include "ProjectRunner.h"
-#include "QuadraticProbing.h"
 
 class Scheduler
 {
