@@ -48,6 +48,18 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
   nJobs = numJobs;
 } // Scheduler()
 
+void findCriticalPath(VQueue tpList)
+{
+  Jobs criticalPath[100000];
+  Vertex V1, V2;  
+  for (int i=0; i < tpList.length; i++)
+  {
+    V1 = tpList.getFront();
+    tpList.dequeue();
+    V2 = 
+  }
+}
+
 void Scheduler::run()
 {
   VQueue queue(nJobs);
