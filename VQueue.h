@@ -38,7 +38,7 @@ class VQueue
   {
     front = inc(front);
   }
-
+ 
   int inc( int n )
   {
     if (n < maxSize-1)
