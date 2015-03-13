@@ -25,6 +25,7 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
   {
     vertexes[i].job = &jobs[i];
     vertexes[i].inDegrees = 0;
+    vertexes[i].jobID = i;
   }
 
   // Set inDegrees for each Vertex
@@ -48,6 +49,7 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
   nJobs = numJobs;
 } // Scheduler()
 
+<<<<<<< HEAD
 void findCriticalPath(VQueue tpList)
 {
   Job criticalPath[tpList.getSize()];
@@ -75,13 +77,50 @@ void findCriticalPath(VQueue tpList)
   }
 }
 
+=======
+>>>>>>> origin/master
 void Scheduler::run()
 {
-  VQueue queue(nJobs);
-  queue.enqueue(vertexes[1]);
-  Vertex v = queue.getFront();
-  cout << "Vertex: " << v.inDegrees << endl;
 
+  // Run Topological Sort
+  //    First, Enqueue all Vertexes with inDegrees == 0
+  //    Then for item in queue:
+  //      For each Dependency
+  //        Decriment inDegrees
+  //        If dependency has inDegrees == 0
+  //          enqueue dependency
+  //      Dequeue item
+  //      
+  VQueue queue(nJobs);
+  cout << "Running Topological Sort" << endl;
+
+  for (int i = 0; i<nJobs; i++)
+  {
+    // Enqueue All Vertexes that have zero inDegrees
+    if (vertexes[i].inDegrees == 0)
+    { 
+      queue.enqueue(vertexes[i]);
+      cout << "Enqueued vertex " << i << endl;
+    }
+  }
+
+  while ( !queue.isEmpty() )
+  { 
+    Vertex v = queue.getFront();
+    Job *j = v.job;
+    for (int i=0; i<j->numDependencies; i++)
+    {
+      int jNum = j->dependencies[i];
+      vertexes[jNum].inDegrees--;
+      if (vertexes[jNum].inDegrees == 0)
+      {
+        queue.enqueue(vertexes[jNum]);
+	cout << "Enqueued vertex " << jNum << endl;
+      }
+    }
+    queue.dequeue();
+    
+  }
 
   cout << endl << endl;
 } // run()
