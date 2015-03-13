@@ -21,7 +21,7 @@ class Scheduler
 public:
   Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople);
   void run();
-
+  int nJobs;
   Vertex *vertexes;
 
 }; // class Scheduler

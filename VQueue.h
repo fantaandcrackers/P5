@@ -16,17 +16,24 @@
 class VQueue
 {
   public:
-  VQueue( int theSize ): maxSize(theSize), front( 0 ), back(0)
+  VQueue( int theSize ): maxSize(theSize), mySize( 0 ), front( 0 ), back(0)
     { VArray = new Vertex[theSize]; }
   Vertex *VArray;
   int maxSize;
+  int mySize;
   int front;
   int back;
+
+  int getSize()
+  {
+    return mySize;
+  }
 
   void enqueue(Vertex a)
   {
     VArray[back] = a;
     back = inc(back);
+    mySize++;
   }
 
   Vertex getFront()
@@ -37,6 +44,7 @@ class VQueue
   void dequeue()
   {
     front = inc(front);
+    mySize--;
   }
  
   int inc( int n )

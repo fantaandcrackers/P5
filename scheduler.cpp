@@ -37,6 +37,7 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
     }
   }
 
+  // Test to make sure vertexes are good
   cout << "Running Test 2:" << endl;
   for (int i=0; i<numJobs; i++)
   {
@@ -44,20 +45,18 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
   }
   cout << "End Test 2" << endl << endl;
 
- 
-  // FINISHED VERTEXES
-
-
-  cout << "Now Running Topological Sort" << endl;
-  VQueue queue(numJobs);
-
-
-  cout << endl << endl;
-
+  nJobs = numJobs;
 } // Scheduler()
 
 void Scheduler::run()
 {
+  VQueue queue(nJobs);
+  queue.enqueue(vertexes[1]);
+  Vertex v = queue.getFront();
+  cout << "Vertex: " << v.inDegrees << endl;
+
+
+  cout << endl << endl;
 } // run()
 
 
