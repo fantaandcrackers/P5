@@ -24,6 +24,11 @@ class VQueue
   int front;
   int back;
  
+  // This is used for Topological Sort
+  // Since dequeue doesn't delete actual values,
+  // At the end of the topological sort, the VArray will hold
+  // all of the array.
+
   bool isEmpty()
   {
     if (mySize==0) return true;

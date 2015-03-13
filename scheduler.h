@@ -13,6 +13,9 @@ typedef struct
   Job *job;
   int inDegrees; 
   int jobID;
+  int shortest;
+  int longest;
+  int behindID; // This holds the Job for the shortest path
 } Vertex;
 
 #include "VQueue.h"

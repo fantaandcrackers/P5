@@ -14,7 +14,7 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
     {
       cout << jobs[i].dependencies[j] << ' ';
     }
-    cout << endl;
+    cout <<" with length " << jobs[i].length  << endl;
   }
   cout << "End Basic Test" << endl << endl;
 
@@ -26,6 +26,8 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
     vertexes[i].job = &jobs[i];
     vertexes[i].inDegrees = 0;
     vertexes[i].jobID = i;
+    vertexes[i].shortest = 0;
+    vertexes[i].longest = 0;
   }
 
   // Set inDegrees for each Vertex
@@ -77,15 +79,27 @@ void Scheduler::run()
   while ( !queue.isEmpty() )
   { 
     Vertex v = queue.getFront();
+    cout << "Current Vertex is " << v.jobID << " with shortest Path " << v.shortest << endl;    
+
+
     Job *j = v.job;
     for (int i=0; i<j->numDependencies; i++)
     {
       int jNum = j->dependencies[i];
       vertexes[jNum].inDegrees--;
+      // If a shortest path hasn't been added yet, add on a shortest path to dependency
+      if (vertexes[jNum].shortest == 0) vertexes[jNum].shortest = v.shortest + v.job->length;
+      // If not, then Alter shortest path ONLY if the path I'm looking at now is shorter
+      else
+      {
+	int currentPath = v.shortest + vertexes[jNum].job->length;
+ 	if ( currentPath < vertexes[jNum].shortest )  vertexes[jNum].shortest = currentPath;
+      }
+
+      // Enqueue if inDegrees == 0
       if (vertexes[jNum].inDegrees == 0)
       {
         queue.enqueue(vertexes[jNum]);
-	cout << "Enqueued vertex " << jNum << endl;
       }
     }
     queue.dequeue();
