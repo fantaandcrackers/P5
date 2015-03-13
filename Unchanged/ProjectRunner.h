@@ -1,5 +1,5 @@
 #ifndef PROJECTRUNNER_H
-  #define PROJECTRUNNER_H
+#define PROJECTRUNNER_H
 
 typedef struct
 {

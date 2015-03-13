@@ -50,13 +50,28 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
 
 void findCriticalPath(VQueue tpList)
 {
-  Jobs criticalPath[100000];
-  Vertex V1, V2;  
-  for (int i=0; i < tpList.length; i++)
+  Job criticalPath[tpList.getSize()];
+  Vertex V1;  
+  int tracker; //keeping count of the finish time
+
+  tracker = V1.job->startTime;
+  tpList.dequeue();
+
+  x = 0; // for counting critical path array
+
+  for (int i=0; i < tpList.getSize(); i++)
   {
-    V1 = tpList.getFront();
-    tpList.dequeue();
-    V2 = 
+    if (!tpList.isEmpty())
+    {
+      V1 = tpList.getFront();
+
+      if ((tracker - V1.job->length) == V1.job->startTime) { //no slack
+        criticalPath[x] = V1.jobID;
+        x++;
+      }
+
+      tpList.dequeue();
+    }
   }
 }
 
