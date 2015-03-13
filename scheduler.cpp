@@ -25,6 +25,7 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
   {
     vertexes[i].job = &jobs[i];
     vertexes[i].inDegrees = 0;
+    vertexes[i].jobID = i;
   }
 
   // Set inDegrees for each Vertex
@@ -47,18 +48,6 @@ Scheduler::Scheduler(int numJobs, int numWorkers, Job *jobs, int numPeople)
 
   nJobs = numJobs;
 } // Scheduler()
-
-void findCriticalPath(VQueue tpList)
-{
-  Jobs criticalPath[100000];
-  Vertex V1, V2;  
-  for (int i=0; i < tpList.length; i++)
-  {
-    V1 = tpList.getFront();
-    tpList.dequeue();
-    V2 = 
-  }
-}
 
 void Scheduler::run()
 {

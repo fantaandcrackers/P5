@@ -12,6 +12,7 @@ typedef struct
   //List <int> outEdges;
   Job *job;
   int inDegrees; 
+  int jobID;
 } Vertex;
 
 #include "VQueue.h"
