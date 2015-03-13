@@ -15,6 +15,7 @@ typedef struct
   int jobID;
   int shortest;
   int longest;
+  int slack;
   int behindID; // This holds the Job for the shortest path
 } Vertex;
 
