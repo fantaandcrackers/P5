@@ -82,8 +82,9 @@ void Scheduler::run()
   while ( !queue.isEmpty() )
   { 
     Vertex v = queue.getFront();
-    cout << "Current Vertex is " << v.jobID << " with Longest Path " << v.longest << " and Shortest Path " << v.shortest << endl;   
+    //cout << "Current Vertex is " << v.jobID << " with Longest Path " << v.longest << " and Shortest Path " << v.shortest << endl;   
     v.slack = v.longest-v.shortest;
+    cout << "Current Vertex is " << v.jobID << " with slack = " << v.slack << endl;
 
     Job *j = v.job;
     for (int i=0; i<j->numDependencies; i++)
