@@ -23,6 +23,12 @@ class VQueue
   int mySize;
   int front;
   int back;
+ 
+  bool isEmpty()
+  {
+    if (mySize==0) return true;
+    else return false;
+  }  
 
   int getSize()
   {
